@@ -1,0 +1,56 @@
+.header {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+.logo h2 {
+  color: #00d4aa;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav a:hover {
+  color: #00d4aa;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+  
+  .header-actions {
+    gap: 8px;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
