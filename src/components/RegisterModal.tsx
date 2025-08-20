@@ -23,15 +23,38 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, onSwitch
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match');
       return;
     }
-    // Handle registration logic here
-    console.log('Register:', formData);
-    onClose();
+    
+    try {
+      const response = await fetch('/register', {
+        method: 'POST',
+        headers: {
+          'accept': '*/*',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password
+        })
+      });
+      
+      if (response.ok) {
+        alert('Account created successfully!');
+        onClose();
+      } else {
+        const error = await response.text();
+        alert(`Registration failed: ${error}`);
+      }
+    } catch (error) {
+      alert('Network error. Please try again.');
+    }
   };
 
   if (!isOpen) return null;

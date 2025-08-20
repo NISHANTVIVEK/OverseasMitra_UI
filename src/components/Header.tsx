@@ -3,7 +3,11 @@ import './Header.css';
 import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onLoginSuccess: (email: string, hasProfile: boolean) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onLoginSuccess }) => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
@@ -48,6 +52,7 @@ const Header: React.FC = () => {
         isOpen={isLoginOpen} 
         onClose={closeModals} 
         onSwitchToRegister={openRegister}
+        onLoginSuccess={onLoginSuccess}
       />
       <RegisterModal 
         isOpen={isRegisterOpen} 
